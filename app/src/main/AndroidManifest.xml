@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activity.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,16 +23,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegiserActivity" />
+        <activity android:name=".Activity.RegiserActivity" />
         <activity
-            android:name=".HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".Activity.HomeActivity"
+            android:label="Home" />
         <activity
-            android:name=".CourseActivity"
+            android:name=".Activity.CourseActivity"
             android:label="@string/title_activity_course"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PostActivity"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Activity.PostActivity" />
+        <activity android:name=".Adapters.CoursesAdapter" />
+        <activity android:name=".Adapters.PostsAdapter" />
+        <activity android:name=".Activity.AddCourseActivity" />
     </application>
 
 </manifest>

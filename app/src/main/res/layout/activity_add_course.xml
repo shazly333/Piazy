@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.shazly.piazyapp.Activity.AddCourseActivity"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <EditText
+        android:id="@+id/courseName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Course Name..."
+        android:layout_margin="24dp"
+        android:inputType="textPersonName"
+        />
+    <EditText
+    android:id="@+id/courseCode"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Course Code..."
+    android:layout_margin="24dp"
+    />
+    <EditText
+    android:id="@+id/faculty"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Faculty..."
+    android:layout_margin="24dp"
+    />
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      >
+      <EditText
+          android:id="@+id/studentEmail"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:hint="Student Email..."
+          android:layout_margin="24dp"
+          android:inputType="textEmailAddress"
+          />
+      <ImageButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="24dp"
+          android:id="@+id/addStudent"
+          android:src="@drawable/plus"
+          />
+      <TextView
+          android:id="@+id/addingStudentState"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="24dp"
+          />
+
+
+  </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <EditText
+            android:id="@+id/instructorEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Instructor Email..."
+            android:layout_margin="24dp"
+            android:inputType="textEmailAddress"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:id="@+id/addInstructor"
+            android:src="@drawable/plus"
+            />
+        <TextView
+            android:id="@+id/addingInstructorState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            tools:hint="Has Been Added Already"
+            />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+</ScrollView>

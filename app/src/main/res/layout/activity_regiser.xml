@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.example.shazly.piazyapp.RegiserActivity">
+        tools:context="com.example.shazly.piazyapp.Activity.RegiserActivity">
 
         <EditText
             android:layout_width="match_parent"
@@ -54,7 +54,6 @@
             android:layout_margin="16dp"
             android:text="Register"
             android:id="@+id/register"
-            android:onClick="onClick"
 
             />
     </LinearLayout>
