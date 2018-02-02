@@ -12,6 +12,12 @@ import java.util.List;
 public class Course {
     String name="", code="";
     List<Post> posts = new ArrayList<>();
+    List<SourceFiles> files  = new ArrayList<>();
+
+    public List<SourceFiles> getFiles() {
+        return files;
+    }
+
     List<String> studentsId = new ArrayList<>();
     List<String> instructorsId = new ArrayList<>();
 

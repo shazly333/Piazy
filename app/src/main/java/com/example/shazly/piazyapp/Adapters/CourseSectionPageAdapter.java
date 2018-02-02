@@ -8,11 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by shazly on 27/01/18.
+ * Created by shazly on 02/02/18.
  */
 
-public class SectionPageAdapter extends FragmentPagerAdapter {
- private final List<Fragment> mFragmentList = new ArrayList<>();
+public class CourseSectionPageAdapter extends FragmentPagerAdapter {
+
+    public CourseSectionPageAdapter(FragmentManager fm) {
+        super(fm);
+    }
+
+    private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
 
     public void addFragment(Fragment fragment, String title) {
@@ -20,9 +25,6 @@ public class SectionPageAdapter extends FragmentPagerAdapter {
         mFragmentTitleList.add(title);
     }
 
-    public SectionPageAdapter(FragmentManager fm) {
-        super(fm);
-    }
 
     @Override
     public CharSequence getPageTitle(int position) {
@@ -39,4 +41,6 @@ public class SectionPageAdapter extends FragmentPagerAdapter {
         return mFragmentList.size();
     }
 }
+
+
 

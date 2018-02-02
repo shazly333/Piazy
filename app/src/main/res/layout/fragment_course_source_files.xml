@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.shazly.piazyapp.Fragments.FragmentNotifications">
+    tools:context="com.example.shazly.piazyapp.Fragments.FragmentSourceFiles">
     <ListView
-        android:id="@+id/listOfPosts"
+        android:id="@+id/listOfSourceFiles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnWidth="90dp"
@@ -19,8 +19,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal|center_vertical"
-        android:text="No Notifications Until Now"
+        android:text="No Files Until Now"
         android:visibility="invisible"
-        android:id="@+id/noPost"
+        android:fontFamily="sans-serif"
+        tools:hint="biuiugiuhiu"
+        android:id="@+id/emptyFiles"
         />
 </android.support.constraint.ConstraintLayout>

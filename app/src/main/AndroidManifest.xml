@@ -35,6 +35,8 @@
         <activity android:name=".Adapters.CoursesAdapter" />
         <activity android:name=".Adapters.PostsAdapter" />
         <activity android:name=".Activity.AddCourseActivity" />
+        <activity android:name=".Activity.AddPostActivity" />
+        <activity android:name=".fragment_course_sourceFiles"></activity>
     </application>
 
 </manifest>

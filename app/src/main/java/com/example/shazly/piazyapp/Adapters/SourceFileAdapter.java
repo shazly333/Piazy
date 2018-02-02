@@ -8,33 +8,35 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.shazly.piazyapp.Model.Post;
+import com.example.shazly.piazyapp.Model.SourceFiles;
 import com.example.shazly.piazyapp.Model.UserManger;
 import com.example.shazly.piazyapp.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class PostsAdapter extends ArrayAdapter {
+/**
+ * Created by shazly on 02/02/18.
+ */
 
-    public PostsAdapter(Context c, List<Post> posts){
+public class SourceFileAdapter extends ArrayAdapter {
 
-        super(c,0,posts);
+    public SourceFileAdapter(Context c, List<SourceFiles> files) {
+
+        super(c, 0, files);
     }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View listItemView = convertView;
-        if(listItemView == null) {
+        if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.activity_list_posts, parent, false);
+                    R.layout.activity_list_courses, parent, false);
         }
         UserManger userManger = new UserManger();
-        Post post = (Post) getItem(position);
-        TextView postTitle = (TextView) listItemView.findViewById(R.id.title);
-        postTitle.setText(post.getTitle());
-        TextView madeBy = (TextView) listItemView.findViewById(R.id.madeBy);
-        madeBy.setText(userManger.currentPost.getPostOwnerName());
+        SourceFiles file = (SourceFiles) getItem(position);
+        TextView fileTitle = (TextView) listItemView.findViewById(R.id.course);
+        fileTitle.setText(file.getTitle());
         return listItemView;
     }
-
 }

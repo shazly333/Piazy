@@ -15,13 +15,13 @@ import android.view.View;
 import com.example.shazly.piazyapp.Fragments.FragmentCourses;
 import com.example.shazly.piazyapp.Fragments.FragmentNotifications;
 import com.example.shazly.piazyapp.R;
-import com.example.shazly.piazyapp.Adapters.SectionPageAdapter;
+import com.example.shazly.piazyapp.Adapters.HomeSectionPageAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
 
 
-    private SectionPageAdapter mSectionsPageAdapter;
+    private HomeSectionPageAdapter mSectionsPageAdapter;
 
     private ViewPager mViewPager;
     private FloatingActionButton newCourse;
@@ -32,7 +32,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         //Log.d(TAG, "onCreate: Starting.");
         newCourse = findViewById(R.id.newCourse);
-        mSectionsPageAdapter = new SectionPageAdapter(getSupportFragmentManager());
+        mSectionsPageAdapter = new HomeSectionPageAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         setupViewPager(mViewPager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -70,7 +70,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private void setupViewPager(ViewPager viewPager) {
-        SectionPageAdapter adapter = new SectionPageAdapter(getSupportFragmentManager());
+        HomeSectionPageAdapter adapter = new HomeSectionPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new FragmentCourses(), "Courses");
        adapter.addFragment(new FragmentNotifications(), "Notifications");
 //        adapter.addFragment(new fragment3(), "TAB3");

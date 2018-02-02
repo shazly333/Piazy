@@ -18,6 +18,11 @@ public class Post {
     String content="";
     String title="";
     String postOwnerId="";
+    String postOwnerName="";
+
+    public String getPostOwnerName() {
+        return postOwnerName;
+    }
 
     public List<String> getFollowersID() {
         return followersID;

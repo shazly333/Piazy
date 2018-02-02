@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.shazly.piazyapp.Fragments.FragmentNotifications">
+    tools:context="com.example.shazly.piazyapp.Activity.CourseActivity">
+
     <ListView
         android:id="@+id/listOfPosts"
         android:layout_width="match_parent"
@@ -19,8 +20,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal|center_vertical"
-        android:text="No Notifications Until Now"
+        android:text="No Posts Until Now"
         android:visibility="invisible"
-        android:id="@+id/noPost"
+        android:id="@+id/emptyPosts"
         />
+
 </android.support.constraint.ConstraintLayout>
