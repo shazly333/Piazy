@@ -48,6 +48,11 @@ public class RegiserActivity extends AppCompatActivity {
     public void onClickk(View v) {
         mail = ((EditText) findViewById(R.id.email)).getText().toString();
         password = ((EditText) findViewById(R.id.pass)).getText().toString();
+        if(!(((EditText)findViewById(R.id.confirmPassword)).getText().equals(password))) {
+            Toast.makeText(RegiserActivity.this, "Password and Confirm Password should be the same",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
         mAuth.createUserWithEmailAndPassword(mail, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

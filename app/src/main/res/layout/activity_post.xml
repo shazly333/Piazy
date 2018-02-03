@@ -4,13 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.shazly.piazyapp.Activity.PostActivity">
+    tools:context="com.example.shazly.piazyapp.Activity.PostActivity"
+    android:fitsSystemWindows="true"
+
+
+    >
 
 <android.support.design.internal.BottomNavigationItemView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/bottomView"
     android:layout_alignParentBottom="true"
+    android:fitsSystemWindows="true"
+
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,6 +24,8 @@
         android:weightSum="1"
         android:orientation="horizontal"
         android:layout_weight="9.0"
+        android:fitsSystemWindows="true"
+        android:background="@color/colorPrimary"
         >
 
         <EditText
@@ -26,15 +34,20 @@
             android:layout_weight="0.8"
             android:layout_height="wrap_content"
             android:hint="Write Comment..."
+            android:fitsSystemWindows="true"
+
             />
-        <ImageView
+        <ImageButton
             android:layout_height="match_parent"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
             android:layout_width="0dp"
-            android:src="@drawable/arrow"
+            android:src= "@drawable/plus"
             android:scaleType="fitCenter"
             android:id="@+id/addComment"
+            android:visibility="visible"
+            android:fitsSystemWindows="true"
+
             />
     </LinearLayout>
 
@@ -58,6 +71,7 @@
             tools:text="aasdsdasdasd"
             android:layout_margin="24dp"
             android:id="@+id/name"
+            android:textColor="@color/colorPrimary"
             />
 
 
@@ -69,7 +83,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
         android:layout_below="@+id/profile"
-        tools:text="aasdsdasdasd"
+        android:textColor="@color/common_google_signin_btn_text_light_default"
+        tools:text="aasdsdasdahvjhvjhvjhvjhvhvlvhlhlglhggllgliugliugliugliugilugliugliligilugligglglguligliugililgluluglgi
+        vfyufyfuyfuyfuyfufyuyfufuyfuyfyufuf'
+        yfuyfuyfyyufuyfufufyyufsd"
         android:id="@+id/content"
         />
     <ListView
@@ -82,6 +99,9 @@
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp"
         android:layout_below="@+id/content"
+        android:listSelector="@android:color/transparent"
+        android:layout_marginBottom="?attr/actionBarSize"
+
         />
 
 

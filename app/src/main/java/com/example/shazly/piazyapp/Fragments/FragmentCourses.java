@@ -60,14 +60,15 @@ public class FragmentCourses extends Fragment {
                     UserManger.currentCourse = course;
                     UserManger userManger = new UserManger();
                     Intent intent = new Intent(getActivity(), CourseActivity.class);
-                    try {
-                        Intent intents = new Intent(getActivity(), Wait.class);
-                        startActivity(intents);
-
-                        userManger.findUserByID(UserManger.currentUser.getUserId(), getContext(), intent);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    startActivity(intent);
+//                    try {
+//                        //Intent intents = new Intent(getActivity(), Wait.class);
+//                        startActivity(intent);
+//
+//                      //  userManger.findUserByID(UserManger.currentUser.getUserId(), getContext(), intent);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
                 //    startActivity(intent);
                 }
             });

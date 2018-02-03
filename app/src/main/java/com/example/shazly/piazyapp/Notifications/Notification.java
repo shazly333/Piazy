@@ -1,6 +1,7 @@
 package com.example.shazly.piazyapp.Notifications;
 
 import com.example.shazly.piazyapp.Model.Course;
+import com.example.shazly.piazyapp.Model.Post;
 import com.example.shazly.piazyapp.Model.User;
 
 /**
@@ -12,6 +13,7 @@ public  class Notification {
     Course course;
  String content;
  String userId;
+ Post post = null;
 
     public String getUserId() {
         return userId;
@@ -27,6 +29,10 @@ public  class Notification {
 
     public Course getCourse() {
         return course;
+    }
+
+    public Post getPost() {
+        return post;
     }
 
     public Notification() {

@@ -14,7 +14,7 @@ public class Post {
 
 
     List<String> followersID = new ArrayList<>();
-    List<String> comments = new ArrayList<>();
+    List<Comment> comments = new ArrayList<>();
     String content="";
     String title="";
     String postOwnerId="";
@@ -49,22 +49,7 @@ public class Post {
         return id;
     }
 
-  /*  public void addComment(String content, User user) throws InterruptedException {
-         UserManger manger = new UserManger();
-         postOwnerId = user.getUserId();
-        for (int i = 0; i < followersID.size(); i++) {
-            if (!(user.getUserId().equals( followersID.get(i)))) {
-                manger.AddCourseToFollowers(followersID.get(i)).addNotifications(new CommentNotifications(user, UserManger.currentCourse));
-            }
-        }
-
-        comments.add(content);
-        followersID.add(user.getUserId());
-
-    }
-*/
-
-    public List<String> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 

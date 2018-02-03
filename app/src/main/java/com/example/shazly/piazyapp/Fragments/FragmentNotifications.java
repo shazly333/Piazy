@@ -13,9 +13,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.shazly.piazyapp.Activity.CourseActivity;
+import com.example.shazly.piazyapp.Activity.PostActivity;
 import com.example.shazly.piazyapp.Adapters.NotificationsAdapter;
 import com.example.shazly.piazyapp.Model.Course;
 import com.example.shazly.piazyapp.Model.UserManger;
+import com.example.shazly.piazyapp.Notifications.CommentNotifications;
 import com.example.shazly.piazyapp.Notifications.Notification;
 import com.example.shazly.piazyapp.Model.Post;
 import com.example.shazly.piazyapp.R;
@@ -36,11 +38,10 @@ public class FragmentNotifications extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home_notifications, container, false);
-        ArrayList<String> notifications = new ArrayList<>();
-        for(int i = 0; i < UserManger.currentUser.getNotifications().size(); i++)
-            notifications.add(((Notification)UserManger.currentUser.getNotifications().get(i)).getContent());
-        if (notifications.size() != 0) {
-            final NotificationsAdapter adapter = new NotificationsAdapter(getActivity(), notifications);
+
+
+        if (UserManger.currentUser.getNotifications().size() != 0) {
+            final NotificationsAdapter adapter = new NotificationsAdapter(getActivity(), UserManger.currentUser.getNotifications());
             ListView listView = view.findViewById(R.id.listOfPosts);
             listView.setAdapter(adapter);
 
@@ -48,9 +49,18 @@ public class FragmentNotifications extends Fragment {
 
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    UserManger.currentCourse = (Course) adapter.getItem(position);
-                    Intent intent = new Intent(getActivity(), CourseActivity.class);
-                    startActivity(intent);
+                   if(((Notification)adapter.getItem(position)).getPost() != null ) {
+
+                       UserManger.currentCourse = ((Notification) adapter.getItem(position)).getCourse();
+                       UserManger.currentPost =  ((Notification)adapter.getItem(position)).getPost();
+                       Intent intent = new Intent(getActivity(), PostActivity.class);
+                       startActivity(intent);
+                   }
+                    else{
+                        UserManger.currentCourse = ((Notification) adapter.getItem(position)).getCourse();
+                        Intent intent = new Intent(getActivity(), CourseActivity.class);
+                        startActivity(intent);
+                    }
                 }
             });
         }

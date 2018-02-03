@@ -36,7 +36,8 @@
         <activity android:name=".Adapters.PostsAdapter" />
         <activity android:name=".Activity.AddCourseActivity" />
         <activity android:name=".Activity.AddPostActivity" />
-        <activity android:name=".Activity.Wait"></activity>
+        <activity android:name=".Activity.Wait" />
+        <activity android:name=".ListOfComments"></activity>
     </application>
 
 </manifest>

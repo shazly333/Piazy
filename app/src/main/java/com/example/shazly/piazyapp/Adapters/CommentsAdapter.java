@@ -7,23 +7,23 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.shazly.piazyapp.Model.Comment;
 import com.example.shazly.piazyapp.Model.Course;
-import com.example.shazly.piazyapp.Notifications.Notification;
 import com.example.shazly.piazyapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by shazly on 02/02/18.
+ * Created by shazly on 03/02/18.
  */
 
-public class NotificationsAdapter extends ArrayAdapter {
+public class CommentsAdapter extends ArrayAdapter {
 
 
-    public NotificationsAdapter(Context c, List<String> notifications){
+    public CommentsAdapter(Context c, List<Comment> comments){
 
-        super(c,0,notifications);
+        super(c,0,comments);
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -31,13 +31,11 @@ public class NotificationsAdapter extends ArrayAdapter {
         View listItemView = convertView;
         if(listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.activity_list_courses, parent, false);
+                    R.layout.activity_list_of_comments, parent, false);
         }
-
-        Notification notification = (Notification) getItem(position);
-        TextView courseView = (TextView) listItemView.findViewById(R.id.course);
-        courseView.setText(notification.getContent());
-
+        Comment comment = (Comment) getItem(position);
+        TextView commentView = (TextView) listItemView.findViewById(R.id.comment);
+        commentView.setText(comment.getContent());
         return listItemView;
     }
 }

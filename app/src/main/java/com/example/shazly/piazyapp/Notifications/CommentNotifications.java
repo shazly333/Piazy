@@ -1,6 +1,7 @@
 package com.example.shazly.piazyapp.Notifications;
 
 import com.example.shazly.piazyapp.Model.Course;
+import com.example.shazly.piazyapp.Model.Post;
 import com.example.shazly.piazyapp.Model.User;
 
 /**
@@ -8,16 +9,20 @@ import com.example.shazly.piazyapp.Model.User;
  */
 
 public class CommentNotifications extends Notification {
-    public CommentNotifications(String user, Course course, String userId) {
-        super(user, course, userId);
+    public CommentNotifications(String userName, Course course, String userId, Post post) {
+        super(userName, course, userId);
+        this.post = post;
         if (isInstructor(this.user, this.course)) {
-            content =  ("Instructor " + user + " commented in  a post you follow in " + course.getName());
+            content =  ("Instructor " + userName + " commented in  a post you follow in " + course.getName());
         } else
-            content =  (user + " commented in  a post you follow in " + course.getName());
+            content =  (userName + " commented in  a post you follow in " + course.getName());
+
     }
 
     public CommentNotifications() {
     }
 
-
+    public Post getPost() {
+        return post;
+    }
 }

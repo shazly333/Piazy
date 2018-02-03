@@ -24,8 +24,7 @@ import java.util.ArrayList;
  * Created by shazly on 01/02/18.
  */
 
-public class UserManger extends AppCompatActivity {
-    boolean isQueryingFinished = false;
+public class UserManger  {
     public static User currentUser;
     public static Course currentCourse;
     public static Post currentPost;
@@ -112,6 +111,7 @@ public class UserManger extends AppCompatActivity {
                 user = (dataSnapshot.getValue(User.class));
                 currentUser = user;
                 context.startActivity(intent);
+                myRef.removeEventListener(this);
             }
 
             @Override

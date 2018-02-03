@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -105,6 +106,14 @@ public class CourseActivity extends AppCompatActivity {
         adapter.addFragment(new FragmentPosts(), "Posts");
         adapter.addFragment(new FragmentNotifications(), "Notifications");
         viewPager.setAdapter(adapter);
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent intent = new Intent(CourseActivity.this, HomeActivity.class);
+            return true;
+        } else
+            return super.onKeyDown(keyCode, event);
     }
 
 

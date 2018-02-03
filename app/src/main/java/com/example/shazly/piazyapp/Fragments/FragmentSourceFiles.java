@@ -14,16 +14,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.shazly.piazyapp.Activity.AddPostActivity;
-import com.example.shazly.piazyapp.Activity.PostActivity;
-import com.example.shazly.piazyapp.Adapters.PostsAdapter;
-import com.example.shazly.piazyapp.Adapters.SourceFileAdapter;
-import com.example.shazly.piazyapp.Model.Post;
+import com.example.shazly.piazyapp.Adapters.SourceFilesAdapter;
 import com.example.shazly.piazyapp.Model.SourceFiles;
 import com.example.shazly.piazyapp.Model.User;
 import com.example.shazly.piazyapp.Model.UserManger;
 import com.example.shazly.piazyapp.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -61,7 +57,7 @@ public class FragmentSourceFiles extends Fragment{
     private void showData() {
         List<SourceFiles> files = UserManger.currentCourse.getFiles();
         if(files.size() != 0) {
-            final SourceFileAdapter adapter = new SourceFileAdapter(getActivity(), files);
+            final SourceFilesAdapter adapter = new SourceFilesAdapter(getActivity(), files);
             listOfFiles.setAdapter(adapter);
             listOfFiles.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

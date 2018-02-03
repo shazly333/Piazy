@@ -18,9 +18,9 @@ import java.util.List;
  * Created by shazly on 02/02/18.
  */
 
-public class SourceFileAdapter extends ArrayAdapter {
+public class SourceFilesAdapter extends ArrayAdapter {
 
-    public SourceFileAdapter(Context c, List<SourceFiles> files) {
+    public SourceFilesAdapter(Context c, List<SourceFiles> files) {
 
         super(c, 0, files);
     }
