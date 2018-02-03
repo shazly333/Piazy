@@ -8,15 +8,20 @@ import com.example.shazly.piazyapp.Model.User;
  */
 
 public  class Notification {
-    User user;
+    String  user;
     Course course;
  String content;
+ String userId;
+
+    public String getUserId() {
+        return userId;
+    }
 
     public String getContent() {
         return content;
     }
 
-    public User getUser() {
+    public String getUser() {
         return user;
     }
 
@@ -28,15 +33,16 @@ public  class Notification {
 
     }
 
-    public Notification(User user, Course course) {
+    public Notification(String user, Course course, String userId) {
         this.user = user;
         this.course = course;
+        this.userId = userId;
     }
 
 
-    protected boolean isInstructor(User user, Course course) {
+    protected boolean isInstructor(String userId, Course course) {
         for (int i = 0; i < course.getInstructorsId().size(); i++)
-            if (course.getInstructorsId().get(i).equals(user.getUserId()))
+            if (course.getInstructorsId().get(i).equals(userId))
                 return true;
 
         return false;

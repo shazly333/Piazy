@@ -42,25 +42,25 @@ public class CourseActivity extends AppCompatActivity {
 
     private CourseSectionPageAdapter mSectionsPageAdapter;
     private ViewPager mViewPager;
-    private FloatingActionButton newPost;
+  //  private FloatingActionButton newPost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
-        newPost = findViewById(R.id.newPost);
+       // newPost = findViewById(R.id.newPost);
         mSectionsPageAdapter = new CourseSectionPageAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         setupViewPager(mViewPager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-        newPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CourseActivity.this, AddPostActivity.class);
-                startActivity(intent);
-            }
-        });
+//        newPost.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(CourseActivity.this, AddPostActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 
@@ -103,7 +103,7 @@ public class CourseActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         HomeSectionPageAdapter adapter = new HomeSectionPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new FragmentPosts(), "Posts");
-        //adapter.addFragment(new FragmentNotifications(), "Notifications");
+        adapter.addFragment(new FragmentNotifications(), "Notifications");
         viewPager.setAdapter(adapter);
     }
 

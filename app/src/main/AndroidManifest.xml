@@ -36,7 +36,7 @@
         <activity android:name=".Adapters.PostsAdapter" />
         <activity android:name=".Activity.AddCourseActivity" />
         <activity android:name=".Activity.AddPostActivity" />
-        <activity android:name=".fragment_course_sourceFiles"></activity>
+        <activity android:name=".Wait"></activity>
     </application>
 
 </manifest>

@@ -14,7 +14,7 @@ public class User {
 
     String name="";
     String email="";
-    List<Course> courses = new ArrayList<Course>();
+    List<Course> courses = new ArrayList();
     List<Notification> notifications = new ArrayList<Notification>();
     String userId="";
 
@@ -22,10 +22,6 @@ public class User {
         this.userId = user.getUid();
         this.name = name;
         this.email = user.getEmail();
-        //courses.add(new Course("ddd","wefwef", null, null));
-
-
-
     }
 
     public User() {
@@ -35,30 +31,16 @@ public class User {
     public List getNotifications() {
         return notifications;
     }
-
-
-
     public String getEmail() {
         return email;
     }
-
-    public void addNotifications(Notification notification) {
-        notifications.add(notification);
-    }
-
-
     public String getName() {
         return name;
     }
-
     public List getCourses() {
         return courses;
     }
-
-    public String getUserId() {
-
-        return userId;
-    }
+    public String getUserId() { return userId;  }
 
     public void update() {
         UserManger manger = new UserManger();

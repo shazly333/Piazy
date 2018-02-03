@@ -35,7 +35,7 @@ public class UserManger {
     private User user = new User();
     private DatabaseReference mDatabase;
     boolean firstChange = true;
-
+boolean x =true;
     public UserManger() {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -57,7 +57,7 @@ public class UserManger {
 
 
     public void FindUserByEmail(final EditText addedEmail, final ArrayList<String> followers, final TextView state) throws InterruptedException {
-        myRef = mFirebaseDatabase.getReference().child("users/");
+        myRef = mFirebaseDatabase.getReference().child("users");
         firstChange = true;
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -67,7 +67,7 @@ public class UserManger {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         String email = ds.child("email").getValue(String.class);
                         if (email.equals(addedEmail.getText().toString())) {
-                            user = (ds.getValue(User.class));
+                            user = ds.getValue(User.class);
                         }
                     }
                     if (user != null) {
@@ -83,6 +83,7 @@ public class UserManger {
                     }
                     addedEmail.setEnabled(true);
                     addedEmail.setText("");
+                    firstChange = false;
                 }
             }
 
@@ -103,7 +104,7 @@ public class UserManger {
 
     public User findUserByID(String id) throws InterruptedException {
 
-        myRef = mFirebaseDatabase.getReference().child("users/" + id + "/");
+                myRef = mFirebaseDatabase.getReference().child("users/" + id + "/");
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {

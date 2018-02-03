@@ -33,7 +33,7 @@ public class PostsAdapter extends ArrayAdapter {
         TextView postTitle = (TextView) listItemView.findViewById(R.id.title);
         postTitle.setText(post.getTitle());
         TextView madeBy = (TextView) listItemView.findViewById(R.id.madeBy);
-        madeBy.setText(userManger.currentPost.getPostOwnerName());
+        madeBy.setText(post.getPostOwnerName());
         return listItemView;
     }
 

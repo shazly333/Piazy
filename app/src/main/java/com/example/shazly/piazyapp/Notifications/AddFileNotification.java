@@ -21,11 +21,11 @@ public class AddFileNotification extends Notification {
 public AddFileNotification(){
 
 }
-    public AddFileNotification(String fileName, String filePath, User user, Course course) {
-        super(user, course);
+    public AddFileNotification(String fileName, String filePath, String user, Course course, String userId) {
+        super(user, course,  userId);
         this.fileName = fileName;
         this.filePath = filePath;
-        content =  ("Instructor " + user.getName() + " added a file called " + fileName + " in course " + course.getName());
+        content =  ("Instructor " + user + " added a file called " + fileName + " in course " + course.getName());
 
     }
 

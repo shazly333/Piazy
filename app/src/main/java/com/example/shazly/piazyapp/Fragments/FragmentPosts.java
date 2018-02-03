@@ -3,6 +3,7 @@ package com.example.shazly.piazyapp.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.shazly.piazyapp.Activity.AddPostActivity;
 import com.example.shazly.piazyapp.Activity.PostActivity;
 import com.example.shazly.piazyapp.Adapters.PostsAdapter;
 import com.example.shazly.piazyapp.Model.Post;
@@ -30,6 +32,7 @@ public class FragmentPosts extends Fragment{
     User user;
     ListView listOfPosts;
     TextView emptyPosts;
+      private FloatingActionButton newPost;
 
     @Nullable
     @Override
@@ -37,7 +40,15 @@ public class FragmentPosts extends Fragment{
         View view = inflater.inflate(R.layout.fragment_course_posts, container, false);
         listOfPosts = ((ListView) view.findViewById(R.id.listOfPosts));
         emptyPosts = view.findViewById(R.id.emptyPosts);
+        newPost =((FloatingActionButton) view.findViewById(R.id.addPost));
         setHasOptionsMenu(true);
+                newPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddPostActivity.class);
+                startActivity(intent);
+            }
+        });
         showData();
         return view;
     }

@@ -39,11 +39,13 @@ public class AddCourseActivity extends AppCompatActivity {
     String faculty;
     ArrayList<String> students = new ArrayList<>();
     ArrayList<String> instructors = new ArrayList<>();
+
     ImageButton addStudentButton;
     ImageButton addInstructorbutton;
     TextView addingInstructorState;
     TextView addingStudentState;
     boolean firstUpdate = true;
+    boolean xx = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +102,6 @@ public class AddCourseActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
         if (id == R.id.done_action) {
             if (name == "" || faculty == "" || code == "") {
                 Toast.makeText(AddCourseActivity.this, "You Should Fill All Data",
@@ -110,24 +111,9 @@ public class AddCourseActivity extends AppCompatActivity {
                 name = courseNameField.getText().toString();
                 code = courseCodeField.getText().toString();
                 faculty = facultyField.getText().toString();
-                CourseBuilder builder = CourseBuilder.getInstance(name, code, students, instructors);
+                CourseBuilder builder = new  CourseBuilder(name, code, students, instructors);
                 Course course = builder.buildCourse();
-                UserManger.currentUser.getCourses().add(course);
-                UserManger.currentUser.update();
-                try {
-                    addCourseToFollower(instructors, course);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    addCourseToFollower(students, course);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                UserManger.currentCourse = course;
-                Intent intent = new Intent(AddCourseActivity.this, HomeActivity.class);
-                startActivity(intent);
+                findCourseID(course);
                 return true;
             }
         } else if (id == R.id.cancel_action) {
@@ -139,32 +125,75 @@ public class AddCourseActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void addCourseToFollower(ArrayList<String> followers, Course course) throws InterruptedException {
-        for(int i = 0; i < followers.size(); i++)
-           findUserByID(followers.get(i), course);
-    }
-    public void findUserByID(final String id, final Course course) {
-
+    public void AddCourseToFollowers(final Course course) {
          FirebaseDatabase mFirebaseDatabase;
         FirebaseAuth mAuth;
          FirebaseAuth.AuthStateListener mAuthListener;
-          ;
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user1 = mAuth.getCurrentUser();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-       final DatabaseReference  myRef = mFirebaseDatabase.getReference().child("users/" + id + "/");
+        xx = true;
+       final DatabaseReference  myRef = mFirebaseDatabase.getReference().child("users");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-              User  user = (dataSnapshot.getValue(User.class));
-                if (!(id.equals( UserManger.currentUser.getUserId())) && firstUpdate) {
-                    user.getCourses().add(course);
-                    user.getNotifications().add(new AddToCourseNotification(UserManger.currentUser, course));
+                if (xx) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    User user = (ds.getValue(User.class));
+                    for(int i = 0; i < students.size(); i++) {
+                        if(user.getUserId().equals(students.get(i))) {
+                            updateAndSendNotification(user, course);
+                        }
 
-                    user.update();
-                    Toast.makeText(AddCourseActivity.this, "AddNotifications",
-                            Toast.LENGTH_SHORT).show();
+                    }
+                        for(int i = 0; i < instructors.size(); i++) {
+                            if(user.getUserId().equals(instructors.get(i))) {
+                                updateAndSendNotification(user, course);
+                            }
+
+                        }
+                        xx = false;
+                    }
+                }
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+    }
+    public void updateAndSendNotification(User user, Course course) {
+
+        user.getCourses().add(course);
+        user.getNotifications().add(new AddToCourseNotification(UserManger.currentUser.getName(), course, UserManger.currentUser.getUserId()));
+        user.update();
+        Toast.makeText(AddCourseActivity.this, "AddNotifications",
+                Toast.LENGTH_SHORT).show();
+    }
+    public void findCourseID(final Course course) {
+
+        FirebaseDatabase mFirebaseDatabase;
+        FirebaseAuth mAuth;
+        FirebaseAuth.AuthStateListener mAuthListener;
+        final DatabaseReference  mDatabase = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+        final FirebaseUser user1 = mAuth.getCurrentUser();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        firstUpdate = true;
+        final DatabaseReference myRef = mFirebaseDatabase.getReference().child("LastCourseId");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (firstUpdate) {
+                    course.id = dataSnapshot.getValue(int.class);
+                    mDatabase.child("LastCourseId").setValue(course.id + 1);
                     firstUpdate = false;
+                    UserManger.currentUser.getCourses().add(course);
+                    AddCourseToFollowers(course);
+                    UserManger.currentCourse = course;
+                    Intent intent = new Intent(AddCourseActivity.this, HomeActivity.class);
+                    startActivity(intent);
 
                 }
 

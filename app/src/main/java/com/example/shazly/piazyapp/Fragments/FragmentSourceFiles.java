@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.shazly.piazyapp.Activity.AddPostActivity;
 import com.example.shazly.piazyapp.Activity.PostActivity;
 import com.example.shazly.piazyapp.Adapters.PostsAdapter;
 import com.example.shazly.piazyapp.Adapters.SourceFileAdapter;
@@ -33,6 +35,7 @@ public class FragmentSourceFiles extends Fragment{
         User user;
         ListView listOfFiles;
         TextView noFiles;
+     private FloatingActionButton newFile;
 
         @Nullable
         @Override
@@ -40,6 +43,15 @@ public class FragmentSourceFiles extends Fragment{
         View view = inflater.inflate(R.layout.fragment_course_source_files, container, false);
         listOfFiles = ((ListView) view.findViewById(R.id.listOfSourceFiles));
         noFiles = view.findViewById(R.id.emptyFiles);
+            newFile =((FloatingActionButton) view.findViewById(R.id.addSourceFile));
+
+            newFile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), AddPostActivity.class);
+                    startActivity(intent);
+                }
+            });
         setHasOptionsMenu(true);
         showData();
         return view;

@@ -8,13 +8,13 @@ import com.example.shazly.piazyapp.Model.User;
  */
 
 public class PostNotification extends Notification {
-    public PostNotification(User user, Course course) {
-        super(user, course);
+    public PostNotification(String userName, String userId, Course course) {
+        super(userName, course, userId);
 
         if (isInstructor(this.user, this.course)) {
-            content = ("Instructor " + user.getName() + " posted in course " + course.getName());
+            content = ("Instructor " + userName + " posted in course " + course.getName());
         } else
-            content = (user.getName() + " posted in course " + course.getName());
+            content = (userName + " posted in course " + course.getName());
     }
 
     public PostNotification() {}

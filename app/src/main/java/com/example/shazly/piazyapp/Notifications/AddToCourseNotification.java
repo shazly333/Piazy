@@ -8,9 +8,9 @@ import com.example.shazly.piazyapp.Model.User;
  */
 
 public class AddToCourseNotification extends Notification {
-    public AddToCourseNotification(User user, Course course) {
-        super(user, course);
-        content =  ("Instructor " + user.getName() + " added you in a course " + course.getName());
+    public AddToCourseNotification(String user, Course course, String userId) {
+        super(user, course,  userId);
+        content =  ("Instructor " + user + " added you in a course " + course.getName());
 
     }
 public AddToCourseNotification() {

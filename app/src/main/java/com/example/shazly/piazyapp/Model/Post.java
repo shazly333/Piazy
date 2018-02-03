@@ -19,6 +19,10 @@ public class Post {
     String title="";
     String postOwnerId="";
     String postOwnerName="";
+   public int id=0;
+
+    public Post() {
+    }
 
     public String getPostOwnerName() {
         return postOwnerName;
@@ -32,8 +36,6 @@ public class Post {
         return postOwnerId;
     }
 
-    public Post() {
-    }
 
     public String getContent() {
         return content;
@@ -43,16 +45,16 @@ public class Post {
         return title;
     }
 
-    public Post(String content) {
-        this.content = content;
+    public int getId() {
+        return id;
     }
 
-    public void addComment(String content, User user) throws InterruptedException {
+  /*  public void addComment(String content, User user) throws InterruptedException {
          UserManger manger = new UserManger();
          postOwnerId = user.getUserId();
         for (int i = 0; i < followersID.size(); i++) {
             if (!(user.getUserId().equals( followersID.get(i)))) {
-                manger.findUserByID(followersID.get(i)).addNotifications(new CommentNotifications(user, UserManger.currentCourse));
+                manger.AddCourseToFollowers(followersID.get(i)).addNotifications(new CommentNotifications(user, UserManger.currentCourse));
             }
         }
 
@@ -60,7 +62,7 @@ public class Post {
         followersID.add(user.getUserId());
 
     }
-
+*/
 
     public List<String> getComments() {
         return comments;

@@ -8,12 +8,12 @@ import com.example.shazly.piazyapp.Model.User;
  */
 
 public class CommentNotifications extends Notification {
-    public CommentNotifications(User user, Course course) {
-        super(user, course);
+    public CommentNotifications(String user, Course course, String userId) {
+        super(user, course, userId);
         if (isInstructor(this.user, this.course)) {
-            content =  ("Instructor " + user.getName() + " commented in  a post you follow in " + course.getName());
+            content =  ("Instructor " + user + " commented in  a post you follow in " + course.getName());
         } else
-            content =  (user.getName() + " commented in  a post you follow in " + course.getName());
+            content =  (user + " commented in  a post you follow in " + course.getName());
     }
 
     public CommentNotifications() {
