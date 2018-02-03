@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.shazly.piazyapp.Model.User;
 import com.example.shazly.piazyapp.Model.UserManger;
 import com.example.shazly.piazyapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -76,16 +75,15 @@ onClickk(v);
                             FirebaseUser user = mAuth.getCurrentUser();
                             UserManger userManger = new UserManger();
                             try {
-
-                             UserManger.currentUser= userManger.findUserByID(user.getUid().toString());
+                                UserManger.currentUser= userManger.findUserByID(user.getUid().toString(), LoginActivity.this, new Intent(LoginActivity.this, HomeActivity.class));
+                                Intent intent = new Intent(LoginActivity.this, Wait.class);
+                                startActivity(intent);
 
                                 int g = 1;
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
 
-                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                            startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
@@ -96,6 +94,10 @@ onClickk(v);
                     }
                 });
 
+    }
+    public  void display() {
+        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 
 }

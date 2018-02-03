@@ -36,7 +36,7 @@
         <activity android:name=".Adapters.PostsAdapter" />
         <activity android:name=".Activity.AddCourseActivity" />
         <activity android:name=".Activity.AddPostActivity" />
-        <activity android:name=".Wait"></activity>
+        <activity android:name=".Activity.Wait"></activity>
     </application>
 
 </manifest>

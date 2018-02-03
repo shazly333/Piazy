@@ -132,8 +132,7 @@ public class AddPostActivity extends AppCompatActivity {
             }
         }
         user.update();
-        Toast.makeText(AddPostActivity.this, "AddNotifications",
-                Toast.LENGTH_SHORT).show();
+
     }
 
 
@@ -158,7 +157,7 @@ public class AddPostActivity extends AppCompatActivity {
                     UserManger.currentCourse.getPosts().add(post);
                     findUsers(post);
                     UserManger.currentPost = post;
-                    Intent intent = new Intent(AddPostActivity.this, CourseActivity.class);
+                    Intent intent = new Intent(AddPostActivity.this, PostActivity.class);
                     startActivity(intent);
                 }
 

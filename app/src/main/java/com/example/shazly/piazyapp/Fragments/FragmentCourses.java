@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.shazly.piazyapp.Activity.CourseActivity;
+import com.example.shazly.piazyapp.Activity.Wait;
 import com.example.shazly.piazyapp.Adapters.CoursesAdapter;
 import com.example.shazly.piazyapp.Model.Course;
 import com.example.shazly.piazyapp.Model.UserManger;
@@ -57,8 +58,17 @@ public class FragmentCourses extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Course course = (Course) adapter.getItem(position);
                     UserManger.currentCourse = course;
+                    UserManger userManger = new UserManger();
                     Intent intent = new Intent(getActivity(), CourseActivity.class);
-                    startActivity(intent);
+                    try {
+                        Intent intents = new Intent(getActivity(), Wait.class);
+                        startActivity(intents);
+
+                        userManger.findUserByID(UserManger.currentUser.getUserId(), getContext(), intent);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                //    startActivity(intent);
                 }
             });
         } else

@@ -1,13 +1,15 @@
 package com.example.shazly.piazyapp.Model;
 
+import android.app.Application;
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.shazly.piazyapp.Activity.LoginActivity;
-import com.example.shazly.piazyapp.R;
+import com.example.shazly.piazyapp.Activity.HomeActivity;
+import com.example.shazly.piazyapp.Activity.Wait;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -17,13 +19,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by shazly on 01/02/18.
  */
 
-public class UserManger {
+public class UserManger extends AppCompatActivity {
     boolean isQueryingFinished = false;
     public static User currentUser;
     public static Course currentCourse;
@@ -35,7 +36,8 @@ public class UserManger {
     private User user = new User();
     private DatabaseReference mDatabase;
     boolean firstChange = true;
-boolean x =true;
+    boolean x = true;
+
     public UserManger() {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -55,14 +57,13 @@ boolean x =true;
     }
 
 
-
     public void FindUserByEmail(final EditText addedEmail, final ArrayList<String> followers, final TextView state) throws InterruptedException {
         myRef = mFirebaseDatabase.getReference().child("users");
         firstChange = true;
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(firstChange) {
+                if (firstChange) {
                     User user = null;
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         String email = ds.child("email").getValue(String.class);
@@ -77,8 +78,7 @@ boolean x =true;
                             followers.add(user.getUserId());
                             state.setText("Done!");
                         }
-                    }
-                    else {
+                    } else {
                         state.setText("Not Found!!");
                     }
                     addedEmail.setEnabled(true);
@@ -94,6 +94,7 @@ boolean x =true;
         });
 
     }
+
     private boolean thisUserHasBeenAddedBefore(User user, ArrayList<String> followers) {
         for (int i = 0; i < followers.size(); i++)
             if (followers.get(i).equals(user.getUserId()))
@@ -102,25 +103,21 @@ boolean x =true;
         return false;
     }
 
-    public User findUserByID(String id) throws InterruptedException {
+    public User findUserByID(String id, final Context context, final Intent intent) throws InterruptedException {
 
-                myRef = mFirebaseDatabase.getReference().child("users/" + id + "/");
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        user = (dataSnapshot.getValue(User.class));
-                        currentUser = user;
-                        return;
-                       // currentUser.courses.get(0).name = currentUser.getName();
-                    }
+        myRef = mFirebaseDatabase.getReference().child("users/" + id + "/");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                user = (dataSnapshot.getValue(User.class));
+                currentUser = user;
+                context.startActivity(intent);
+            }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                    }
-                });
-
-
-        TimeUnit.SECONDS.sleep(7);
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
 
         return user;
 
