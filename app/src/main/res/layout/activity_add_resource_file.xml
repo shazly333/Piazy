@@ -5,32 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.shazly.piazyapp.Activity.AddPostActivity">
+    tools:context="com.example.shazly.piazyapp.AddResourceFileActivity">
+
+    >
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title Of File"
+        android:id="@+id/title"
+        android:layout_margin="48dp"
+        />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Title.."
-        android:layout_margin="24dp"
-        android:inputType="text"
-        android:id="@+id/title"
+        android:hint="DownLoad URL File"
+        android:id="@+id/Url"
+        android:layout_margin="48dp"
         />
-
-    <MultiAutoCompleteTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Content.."
-        android:layout_marginLeft="24dp"
-        android:inputType="textMultiLine"
-        tools:text="frng;eqjrgqjergerhgiuerhiguehirughiuergieurg
-geughpuerhguehwiurghieurguieger
-gergheouirghoiuerghoueorgieorghierg
-eorghoeirhgoiehrgoiehrgioheorgier
-eroghoeirhgoeihrgohierghoehrgoiehrg"
-
-        android:id="@+id/content"
-        />
-
-
 
 </LinearLayout>

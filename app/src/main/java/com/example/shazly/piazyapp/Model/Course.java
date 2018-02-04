@@ -1,7 +1,5 @@
 package com.example.shazly.piazyapp.Model;
 
-import com.example.shazly.piazyapp.Notifications.PostNotification;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +10,7 @@ import java.util.List;
 public class Course {
     String name = "", code = "";
     List<Post> posts = new ArrayList<>();
-    List<SourceFiles> files = new ArrayList<>();
+    List<ResourceFiles> files = new ArrayList<>();
     List<String> studentsId = new ArrayList<>();
     List<String> instructorsId = new ArrayList<>();
    public int id=0;
@@ -31,7 +29,7 @@ public class Course {
         return id;
     }
 
-    public List<SourceFiles> getFiles() {
+    public List<ResourceFiles> getFiles() {
         return files;
     }
 

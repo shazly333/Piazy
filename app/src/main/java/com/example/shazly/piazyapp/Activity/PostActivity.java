@@ -3,6 +3,8 @@ package com.example.shazly.piazyapp.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -57,13 +59,8 @@ public class PostActivity extends AppCompatActivity {
         content.setText(UserManger.currentPost.getContent());
         List<Comment> comments = UserManger.currentPost.getComments();
        final  CommentsAdapter adapter = new CommentsAdapter(PostActivity.this, comments);
-        for(int i = 0; i < 50; i++) {
-            Comment comment = new Comment("jjjjjjjj", UserManger.currentUser.getUserId(), UserManger.currentUser.getName());
-            UserManger.currentPost.getComments().add(comment);
-        }
         if (comments.size() != 0) {
             listOfComments.setAdapter(adapter);
-
         }
 
        addComment.setOnClickListener(new View.OnClickListener() {
@@ -71,9 +68,10 @@ public class PostActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Comment comment = new Comment(commentField.getText().toString(), UserManger.currentUser.getUserId(), UserManger.currentUser.getName());
                 UserManger.currentPost.getComments().add(comment);
-                findUsers(comment);
                 adapter.notifyDataSetChanged();
                 listOfComments.smoothScrollToPosition(adapter.getCount() -1);
+
+                findUsers(comment, adapter);
                 commentField.setText("");
 
             }
@@ -81,7 +79,7 @@ public class PostActivity extends AppCompatActivity {
 
     }
 
-    public void findUsers(final Comment comment) {
+    public void findUsers(final Comment comment, final ArrayAdapter adapter) {
 
         FirebaseDatabase mFirebaseDatabase;
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -89,9 +87,7 @@ public class PostActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (firstUpdate) {
-                   // Toast.makeText(PostActivity.this, "Add Comment",
-                     //       Toast.LENGTH_SHORT).show();
+
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         User user = (ds.getValue(User.class));
                         for (int i = 0; i < UserManger.currentCourse.getStudentsId().size(); i++) {
@@ -107,14 +103,14 @@ public class PostActivity extends AppCompatActivity {
 
                         }
 
-                        firstUpdate = false;
                     }
-
-                }
+                    myRef.removeEventListener(this);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(PostActivity.this, "Faild",
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -135,7 +131,7 @@ public class PostActivity extends AppCompatActivity {
         }
         for (int i = 0; i < UserManger.currentPost.getFollowersID().size(); i++) {
             if (user.getUserId().equals(UserManger.currentPost.getFollowersID().get(i))) {
-                user.getNotifications().add(new CommentNotifications(user.getName(), UserManger.currentCourse, user.getUserId(), UserManger.currentPost));
+                user.getNotifications().add(0,new CommentNotifications(UserManger.currentUser.getName(), UserManger.currentCourse, UserManger.currentUser.getUserId(), UserManger.currentPost));
 
             }
         }

@@ -165,8 +165,8 @@ public class AddCourseActivity extends AppCompatActivity {
     }
     public void updateAndSendNotification(User user, Course course) {
 
-        user.getCourses().add(course);
-        user.getNotifications().add(new AddToCourseNotification(UserManger.currentUser.getName(), course, UserManger.currentUser.getUserId()));
+        user.getCourses().add(0,course);
+        user.getNotifications().add(0,new AddToCourseNotification(UserManger.currentUser.getName(), course, UserManger.currentUser.getUserId()));
         user.update();
         Toast.makeText(AddCourseActivity.this, "AddNotifications",
                 Toast.LENGTH_SHORT).show();

@@ -4,14 +4,14 @@ package com.example.shazly.piazyapp.Model;
  * Created by shazly on 02/02/18.
  */
 
-public class SourceFiles {
+public class ResourceFiles {
     String title="";
     String path= "";
 
-    public SourceFiles() {
+    public ResourceFiles() {
     }
 
-    public SourceFiles(String title, String path) {
+    public ResourceFiles(String title, String path) {
         this.title = title;
         this.path = path;
     }

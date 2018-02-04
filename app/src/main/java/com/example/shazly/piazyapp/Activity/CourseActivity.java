@@ -1,5 +1,6 @@
 package com.example.shazly.piazyapp.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -30,6 +31,7 @@ import com.example.shazly.piazyapp.Adapters.PostsAdapter;
 import com.example.shazly.piazyapp.Fragments.FragmentCourses;
 import com.example.shazly.piazyapp.Fragments.FragmentNotifications;
 import com.example.shazly.piazyapp.Fragments.FragmentPosts;
+import com.example.shazly.piazyapp.Fragments.FragmentResourceFiles;
 import com.example.shazly.piazyapp.Model.Post;
 import com.example.shazly.piazyapp.Model.UserManger;
 import com.example.shazly.piazyapp.R;
@@ -104,13 +106,14 @@ public class CourseActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         HomeSectionPageAdapter adapter = new HomeSectionPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new FragmentPosts(), "Posts");
-        adapter.addFragment(new FragmentNotifications(), "Notifications");
+        adapter.addFragment(new FragmentResourceFiles(), "Resource Files");
         viewPager.setAdapter(adapter);
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             Intent intent = new Intent(CourseActivity.this, HomeActivity.class);
+            startActivity(intent);
             return true;
         } else
             return super.onKeyDown(keyCode, event);

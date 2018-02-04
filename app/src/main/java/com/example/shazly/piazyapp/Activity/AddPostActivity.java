@@ -128,7 +128,7 @@ public class AddPostActivity extends AppCompatActivity {
         for(int i = 0; i < user.getCourses().size(); i++) {
             if(((Course)(user.getCourses().get(i))).getId() == (UserManger.currentCourse.getId())){
                 ((Course)(user.getCourses().get(i))).getPosts().add(post);
-                user.getNotifications().add(new PostNotification(user.getName(), user.getUserId(), UserManger.currentCourse));
+                user.getNotifications().add(0,new PostNotification(UserManger.currentUser.getName(), UserManger.currentUser.getUserId(), UserManger.currentCourse));
             }
         }
         user.update();

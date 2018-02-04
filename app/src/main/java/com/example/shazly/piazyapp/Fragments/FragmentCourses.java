@@ -58,7 +58,6 @@ public class FragmentCourses extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Course course = (Course) adapter.getItem(position);
                     UserManger.currentCourse = course;
-                    UserManger userManger = new UserManger();
                     Intent intent = new Intent(getActivity(), CourseActivity.class);
                     startActivity(intent);
 //                    try {

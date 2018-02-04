@@ -60,18 +60,22 @@
         >
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
             android:layout_margin="24dp"
             android:id="@+id/profilePicture"
+            tools:src="@drawable/persondefault"
+            android:scaleType="fitStart"
+            android:layout_weight=".13"
             />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             tools:text="aasdsdasdasd"
             android:layout_margin="24dp"
             android:id="@+id/name"
             android:textColor="@color/colorPrimary"
+            android:layout_weight="0.9"
             />
 
 

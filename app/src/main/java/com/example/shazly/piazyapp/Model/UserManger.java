@@ -83,6 +83,7 @@ public class UserManger  {
                     addedEmail.setEnabled(true);
                     addedEmail.setText("");
                     firstChange = false;
+                    myRef.removeEventListener(this);
                 }
             }
 
