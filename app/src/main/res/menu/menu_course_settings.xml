@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.shazly.piazyapp.Activity.CourseActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/Sign_out"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="Sign_out"
         app:showAsAction="never" />
 </menu>

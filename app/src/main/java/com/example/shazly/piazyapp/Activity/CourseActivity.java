@@ -70,7 +70,6 @@ public class CourseActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (isInstructor(UserManger.currentUser.getUserId()))
             getMenuInflater().inflate(R.menu.menu_course_settings, menu);
 
         return true;
@@ -92,7 +91,7 @@ public class CourseActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.Sign_out) {
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(CourseActivity.this, LoginActivity.class);
             startActivity(intent);

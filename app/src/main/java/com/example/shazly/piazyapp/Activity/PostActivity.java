@@ -1,7 +1,10 @@
 package com.example.shazly.piazyapp.Activity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
@@ -20,8 +23,10 @@ import com.example.shazly.piazyapp.Model.Course;
 import com.example.shazly.piazyapp.Model.Post;
 import com.example.shazly.piazyapp.Model.User;
 import com.example.shazly.piazyapp.Model.UserManger;
+import com.example.shazly.piazyapp.Notifications.AddToCourseNotification;
 import com.example.shazly.piazyapp.Notifications.CommentNotifications;
 import com.example.shazly.piazyapp.Notifications.PostNotification;
+import com.example.shazly.piazyapp.Notifications.RetreiveFeedTask;
 import com.example.shazly.piazyapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,6 +38,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+
+import com.bumptech.glide.Glide;
+
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 
 public class PostActivity extends AppCompatActivity {
 
@@ -42,38 +54,47 @@ public class PostActivity extends AppCompatActivity {
     ImageView profilePicture;
     ImageButton addComment;
     EditText commentField;
-    boolean firstUpdate = true;
+    ProgressDialog wait;
+    Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
-
         content = findViewById(R.id.content);
         listOfComments = findViewById(R.id.listOfComments);
         name = findViewById(R.id.name);
         profilePicture = findViewById(R.id.profilePicture);
+        wait = new ProgressDialog(PostActivity.this);
+        if (!(UserManger.currentPost.imageUrl.equals("")))
+            Glide.with(PostActivity.this).load(UserManger.currentPost.imageUrl).into(profilePicture);
+
         addComment = findViewById(R.id.addComment);
         commentField = findViewById(R.id.commentField);
         name.setText(UserManger.currentPost.getPostOwnerName());
         content.setText(UserManger.currentPost.getContent());
         List<Comment> comments = UserManger.currentPost.getComments();
-       final  CommentsAdapter adapter = new CommentsAdapter(PostActivity.this, comments);
-        if (comments.size() != 0) {
-            listOfComments.setAdapter(adapter);
-        }
+        final CommentsAdapter adapter = new CommentsAdapter(PostActivity.this, comments);
+        listOfComments.setAdapter(adapter);
 
-       addComment.setOnClickListener(new View.OnClickListener() {
+        addComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Comment comment = new Comment(commentField.getText().toString(), UserManger.currentUser.getUserId(), UserManger.currentUser.getName());
-                UserManger.currentPost.getComments().add(comment);
-                adapter.notifyDataSetChanged();
-                listOfComments.smoothScrollToPosition(adapter.getCount() -1);
+                wait.setTitle("Please Wait");
+                wait.setMessage("Loading...");
+                wait.show();
+                if (commentField.getText().toString().equals("")) {
+                    return;
+                }
+                else {
+                    Comment comment = new Comment(commentField.getText().toString(), UserManger.currentUser.getUserId(), UserManger.currentUser.getName(), UserManger.currentUser.getUrl());
+                    UserManger.currentPost.getComments().add(comment);
+                    adapter.notifyDataSetChanged();
+                    listOfComments.smoothScrollToPosition(adapter.getCount() - 1);
 
-                findUsers(comment, adapter);
-                commentField.setText("");
-
+                    findUsers(comment, adapter);
+                    commentField.setText("");
+                }
             }
         });
 
@@ -88,23 +109,24 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        User user = (ds.getValue(User.class));
-                        for (int i = 0; i < UserManger.currentCourse.getStudentsId().size(); i++) {
-                            if (user.getUserId().equals(UserManger.currentCourse.getStudentsId().get(i))) {
-                                updateAndSendNotification(user, comment);
-                            }
-
-                        }
-                        for (int i = 0; i < UserManger.currentCourse.getInstructorsId().size(); i++) {
-                            if (user.getUserId().equals(UserManger.currentCourse.getInstructorsId().get(i))) {
-                                updateAndSendNotification(user, comment);
-                            }
-
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    User user = (ds.getValue(User.class));
+                    for (int i = 0; i < UserManger.currentCourse.getStudentsId().size(); i++) {
+                        if (user.getUserId().equals(UserManger.currentCourse.getStudentsId().get(i))) {
+                            updateAndSendNotification(user, comment);
                         }
 
                     }
-                    myRef.removeEventListener(this);
+                    for (int i = 0; i < UserManger.currentCourse.getInstructorsId().size(); i++) {
+                        if (user.getUserId().equals(UserManger.currentCourse.getInstructorsId().get(i))) {
+                            updateAndSendNotification(user, comment);
+                        }
+
+                    }
+
+                }
+                wait.dismiss();
+                myRef.removeEventListener(this);
             }
 
             @Override
@@ -131,13 +153,37 @@ public class PostActivity extends AppCompatActivity {
         }
         for (int i = 0; i < UserManger.currentPost.getFollowersID().size(); i++) {
             if (user.getUserId().equals(UserManger.currentPost.getFollowersID().get(i))) {
-                user.getNotifications().add(0,new CommentNotifications(UserManger.currentUser.getName(), UserManger.currentCourse, UserManger.currentUser.getUserId(), UserManger.currentPost));
+                CommentNotifications commentNotifications=   new CommentNotifications(UserManger.currentUser.getName(), UserManger.currentCourse, UserManger.currentUser.getUserId(), UserManger.currentPost);
+                user.getNotifications().add(0,commentNotifications);
+                Properties props = new Properties();
+                props.put("mail.smtp.host", "smtp.gmail.com");
+                props.put("mail.smtp.socketFactory.port", "465");
+                props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+                props.put("mail.smtp.auth", "true");
+                props.put("mail.smtp.port", "465");
 
+                session = Session.getDefaultInstance(props, new Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication("piazymanger@gmail.com", "57712150a");
+                    }
+                });
+                RetreiveFeedTask task = new RetreiveFeedTask(session, UserManger.currentCourse.getName(),commentNotifications.getContent(), user.getEmail(), PostActivity.this);
+                task.execute();
             }
         }
         DatabaseReference mDatabase;
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("users").child(user.getUserId()).setValue(user);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent intent = new Intent(PostActivity.this, CourseActivity.class);
+            startActivity(intent);
+            return true;
+        } else
+            return super.onKeyDown(keyCode, event);
     }
 
 

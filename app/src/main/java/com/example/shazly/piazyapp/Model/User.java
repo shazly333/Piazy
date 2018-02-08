@@ -17,7 +17,11 @@ public class User {
     List<Course> courses = new ArrayList();
     List<Notification> notifications = new ArrayList<Notification>();
     String userId="";
-     boolean hasPicture = true;
+    boolean hasPicture = true;
+    public String url="";
+
+
+
 
     public User(FirebaseUser user, String name) {
         this.userId = user.getUid();
@@ -47,10 +51,12 @@ public class User {
     }
     public String getUserId() { return userId;  }
 
-    public boolean isHasPicture() {
+    public boolean hasPicture() {
         return hasPicture;
     }
-
+    public String getUrl() {
+        return url;
+    }
     public void update() {
         UserManger manger = new UserManger();
         manger.updateUser(this);

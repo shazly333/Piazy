@@ -2,6 +2,7 @@ package com.example.shazly.piazyapp.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageInstaller;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -45,6 +46,7 @@ public class RegiserActivity extends AppCompatActivity {
     Uri filepath = null;
     FirebaseStorage firebaseStorage;
     StorageReference storageReference;
+    String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +84,6 @@ public class RegiserActivity extends AppCompatActivity {
     }
 
 
-
     public void onClickk(View v) {
         mail = ((EditText) findViewById(R.id.email)).getText().toString();
         password = ((EditText) findViewById(R.id.pass)).getText().toString();
@@ -99,12 +100,13 @@ public class RegiserActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             if(filepath != null) {
                                 final ProgressDialog progressDialog = new ProgressDialog(RegiserActivity.this);
-                                progressDialog.setTitle("Uploading...");
+                                progressDialog.setTitle("Please Wait...");
                                 progressDialog.show();
                                 StorageReference rf = storageReference.child("images/"+mAuth.getCurrentUser().getUid());
                                 rf.putFile(filepath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override
                                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        url = taskSnapshot.getDownloadUrl().toString();
                                         progressDialog.dismiss();
                                         buildUser();
 
@@ -120,7 +122,7 @@ public class RegiserActivity extends AppCompatActivity {
                                     @Override
                                     public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                                         double progressLoad = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
-                             progressDialog.setMessage("Uploaded  " + (int) progressLoad + "%");
+                             progressDialog.setMessage("Loading " + (int) progressLoad + "%");
                                     }
                                 });
 
@@ -157,6 +159,7 @@ public class RegiserActivity extends AppCompatActivity {
         if(filepath == null) {
             user1.setHasPicture(false);
         }
+        user1.url = url;
         mDatabase.child("users").child(user.getUid()).setValue(user1);
         UserManger.currentUser = user1;
         Toast.makeText(RegiserActivity.this, "Success Register",

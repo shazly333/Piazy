@@ -1,5 +1,6 @@
 package com.example.shazly.piazyapp.Notifications;
 
+import com.example.shazly.piazyapp.Activity.AddPostActivity;
 import com.example.shazly.piazyapp.Model.Course;
 import com.example.shazly.piazyapp.Model.User;
 

@@ -11,14 +11,14 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/board"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/board"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activity.LoginActivity"
-            android:label="LogIn">
+            android:label="Piazy">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

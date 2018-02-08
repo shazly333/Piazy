@@ -27,15 +27,13 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEmailField;
     private EditText mPasswordField;
     Button bt;
-    public static ProgressDialog m ;
-
-    // [START declare_auth]
+    public static ProgressDialog wait ;
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        m =     new ProgressDialog(LoginActivity.this);
+        wait =     new ProgressDialog(LoginActivity.this);
         mEmailField = findViewById(R.id.email);
         mPasswordField = findViewById(R.id.password);
         mAuth = FirebaseAuth.getInstance();
@@ -66,18 +64,26 @@ onClickk(v);
 
         String email = mEmailField.getText().toString();
         String password = mPasswordField.getText().toString();
+        if(email.equals("")  || password.equals("")) {
+
+            Toast.makeText(LoginActivity.this, "Write Your Email And Password",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
                             UserManger userManger = new UserManger();
                             try {
-                                UserManger.currentUser= userManger.findUserByID(user.getUid().toString(), LoginActivity.this, new Intent(LoginActivity.this, HomeActivity.class));
-                                Intent intent = new Intent(LoginActivity.this, Wait.class);
-                                startActivity(intent);
+                                wait.setTitle("Please Wait");
+                                wait.setMessage("Loading...");
+                                wait.show();
+                                UserManger.currentUser= userManger.findCurrentUser(user.getUid().toString(), LoginActivity.this, new Intent(LoginActivity.this, HomeActivity.class), wait);
+
 
                                 int g = 1;
                             } catch (InterruptedException e) {
@@ -85,7 +91,6 @@ onClickk(v);
                             }
 
                         } else {
-                            // If sign in fails, display a message to the user.
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }

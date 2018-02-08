@@ -19,9 +19,24 @@ public class Post {
     String title="";
     String postOwnerId="";
     String postOwnerName="";
-   public int id=0;
+    public int id=0;
+    public String imageUrl="";
+    boolean itsOwnerHasPicture = false;
+
 
     public Post() {
+    }
+
+    public void setItsOwnerHasPicture(boolean itsOwnerHasPicture) {
+        this.itsOwnerHasPicture = itsOwnerHasPicture;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public boolean isItsOwnerHasPicture() {
+        return itsOwnerHasPicture;
     }
 
     public String getPostOwnerName() {

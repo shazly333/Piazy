@@ -48,9 +48,8 @@ public class FragmentCourses extends Fragment {
     private void displayData() {
         UserManger userManger = new UserManger();
 
-        List<Course> courses = UserManger.currentUser.getCourses();
-        if (courses.size() != 00) {
-            final CoursesAdapter adapter = new CoursesAdapter(getActivity(), (ArrayList<Course>) courses);
+        if (UserManger.currentUser.getCourses().size() != 00) {
+            final CoursesAdapter adapter = new CoursesAdapter(getActivity(), (ArrayList<Course>) UserManger.currentUser.getCourses());
             listView.setAdapter(adapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -64,7 +63,7 @@ public class FragmentCourses extends Fragment {
 //                        //Intent intents = new Intent(getActivity(), Wait.class);
 //                        startActivity(intent);
 //
-//                      //  userManger.findUserByID(UserManger.currentUser.getUserId(), getContext(), intent);
+//                      //  userManger.findCurrentUser(UserManger.currentUser.getUserId(), getContext(), intent);
 //                    } catch (InterruptedException e) {
 //                        e.printStackTrace();
 //                    }

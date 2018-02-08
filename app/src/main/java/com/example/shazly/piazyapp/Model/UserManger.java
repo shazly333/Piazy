@@ -1,11 +1,13 @@
 package com.example.shazly.piazyapp.Model;
 
 import android.app.Application;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.shazly.piazyapp.Activity.HomeActivity;
@@ -34,7 +36,6 @@ public class UserManger  {
     private DatabaseReference myRef;
     private User user = new User();
     private DatabaseReference mDatabase;
-    boolean firstChange = true;
     boolean x = true;
 
     public UserManger() {
@@ -56,13 +57,11 @@ public class UserManger  {
     }
 
 
-    public void FindUserByEmail(final EditText addedEmail, final ArrayList<String> followers, final TextView state) throws InterruptedException {
+    public void FindUserByEmail(final EditText addedEmail, final ArrayList<String> followers, final TextView state, final ImageButton addButton) throws InterruptedException {
         myRef = mFirebaseDatabase.getReference().child("users");
-        firstChange = true;
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (firstChange) {
                     User user = null;
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         String email = ds.child("email").getValue(String.class);
@@ -82,9 +81,9 @@ public class UserManger  {
                     }
                     addedEmail.setEnabled(true);
                     addedEmail.setText("");
-                    firstChange = false;
+                    addButton.setEnabled(true);
                     myRef.removeEventListener(this);
-                }
+
             }
 
             @Override
@@ -103,7 +102,7 @@ public class UserManger  {
         return false;
     }
 
-    public User findUserByID(String id, final Context context, final Intent intent) throws InterruptedException {
+    public User findCurrentUser(String id, final Context context, final Intent intent, final ProgressDialog wait) throws InterruptedException {
 
         myRef = mFirebaseDatabase.getReference().child("users/" + id + "/");
         myRef.addValueEventListener(new ValueEventListener() {
@@ -112,6 +111,7 @@ public class UserManger  {
                 user = (dataSnapshot.getValue(User.class));
                 currentUser = user;
                 context.startActivity(intent);
+                wait.dismiss();
                 myRef.removeEventListener(this);
             }
 
