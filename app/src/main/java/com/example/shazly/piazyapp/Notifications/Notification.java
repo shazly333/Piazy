@@ -9,7 +9,7 @@ import com.example.shazly.piazyapp.Model.User;
  */
 
 public  class Notification {
-    String  user;
+    String  userName;
     Course course;
  String content;
  String userId;
@@ -23,8 +23,8 @@ public  class Notification {
         return content;
     }
 
-    public String getUser() {
-        return user;
+    public String getUserName() {
+        return userName;
     }
 
     public Course getCourse() {
@@ -39,8 +39,8 @@ public  class Notification {
 
     }
 
-    public Notification(String user, Course course, String userId) {
-        this.user = user;
+    public Notification(String userName, Course course, String userId) {
+        this.userName = userName;
         this.course = course;
         this.userId = userId;
     }

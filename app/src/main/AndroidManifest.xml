@@ -33,17 +33,23 @@
             android:label="Home" />
         <activity
             android:name=".Activity.CourseActivity"
-            android:label="@string/title_activity_course"
+            android:label="Course"
             android:theme="@style/AppTheme" />
         <activity android:name=".Activity.PostActivity" />
         <activity android:name=".Adapters.CoursesAdapter" />
         <activity android:name=".Adapters.PostsAdapter" />
-        <activity android:name=".Activity.AddCourseActivity" />
-        <activity android:name=".Activity.AddPostActivity" />
+        <activity android:name=".Activity.AddCourseActivity"
+            android:label="Add Course"
+            />
+        <activity android:name=".Activity.AddPostActivity"
+            android:label="Add Post"
+            />
         <activity android:name=".Activity.Wait" />
 
         <activity android:name=".ListOfComments" />
-        <activity android:name=".AddResourceFileActivity"></activity>
+        <activity android:name=".AddResourceFileActivity"
+            android:label="Add Resource File"
+            ></activity>
     </application>
 
 </manifest>

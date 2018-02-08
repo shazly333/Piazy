@@ -25,6 +25,10 @@ public class NotificationsAdapter extends ArrayAdapter {
 
         super(c,0,notifications);
     }
+    public NotificationsAdapter(){
+
+        super(null,0,0);
+    }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Check if the existing view is being reused, otherwise inflate the view

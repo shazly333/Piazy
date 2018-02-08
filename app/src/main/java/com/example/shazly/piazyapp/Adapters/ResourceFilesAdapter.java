@@ -23,6 +23,10 @@ public class ResourceFilesAdapter extends ArrayAdapter {
 
         super(c, 0, files);
     }
+    public ResourceFilesAdapter(){
+
+        super(null,0,0);
+    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

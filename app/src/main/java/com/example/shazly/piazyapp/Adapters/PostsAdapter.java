@@ -20,6 +20,10 @@ public class PostsAdapter extends ArrayAdapter {
 
         super(c,0,posts);
     }
+    public PostsAdapter(){
+
+        super(null,0,0);
+    }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 

@@ -70,34 +70,37 @@ onClickk(v);
                     Toast.LENGTH_SHORT).show();
             return;
         }
-        else
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            UserManger userManger = new UserManger();
-                            try {
-                                wait.setTitle("Please Wait");
-                                wait.setMessage("Loading...");
-                                wait.show();
-                                UserManger.currentUser= userManger.findCurrentUser(user.getUid().toString(), LoginActivity.this, new Intent(LoginActivity.this, HomeActivity.class), wait);
+        else {
+            wait.setTitle("Please Wait");
+            wait.setMessage("Loading...");
+            wait.show();
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                UserManger userManger = new UserManger();
+                                try {
+
+                                    UserManger.currentUser = userManger.findCurrentUser(user.getUid().toString(), LoginActivity.this, new Intent(LoginActivity.this, HomeActivity.class), wait);
 
 
-                                int g = 1;
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                                    int g = 1;
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                                wait.dismiss();
                             }
 
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+
                         }
-
-
-                    }
-                });
+                    });
+        }
 
     }
     public  void display() {

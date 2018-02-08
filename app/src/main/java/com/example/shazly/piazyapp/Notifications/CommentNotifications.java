@@ -12,7 +12,7 @@ public class CommentNotifications extends Notification {
     public CommentNotifications(String userName, Course course, String userId, Post post) {
         super(userName, course, userId);
         this.post = post;
-        if (isInstructor(this.user, this.course)) {
+        if (isInstructor(userId, course)) {
             content =  ("Instructor " + userName + " commented in  a post you follow in " + course.getName());
         } else
             content =  (userName + " commented in  a post you follow in " + course.getName());

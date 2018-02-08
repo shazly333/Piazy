@@ -20,6 +20,11 @@ public class CoursesAdapter extends ArrayAdapter {
 
         super(c,0,courses);
     }
+    public CoursesAdapter(){
+
+        super(null,0,0);
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Check if the existing view is being reused, otherwise inflate the view

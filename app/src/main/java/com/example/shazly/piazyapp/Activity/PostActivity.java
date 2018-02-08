@@ -104,6 +104,7 @@ public class PostActivity extends AppCompatActivity {
 
         FirebaseDatabase mFirebaseDatabase;
         mFirebaseDatabase = FirebaseDatabase.getInstance();
+        UserManger.currentPost.getFollowersID().add(UserManger.currentUser.getUserId());
         final DatabaseReference myRef = mFirebaseDatabase.getReference().child("users");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override

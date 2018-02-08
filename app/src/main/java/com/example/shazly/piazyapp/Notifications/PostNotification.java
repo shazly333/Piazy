@@ -12,7 +12,7 @@ public class PostNotification extends Notification {
     public PostNotification(String userName, String userId, Course course) {
         super(userName, course, userId);
 
-        if (isInstructor(this.user, this.course)) {
+        if (isInstructor(userId, course)) {
             content = ("Instructor " + userName + " posted in course " + course.getName());
         } else
             content = (userName + " posted in course " + course.getName());

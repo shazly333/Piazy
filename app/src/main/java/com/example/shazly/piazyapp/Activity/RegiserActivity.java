@@ -92,6 +92,9 @@ public class RegiserActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
             return;
         }
+        final ProgressDialog progressDialog = new ProgressDialog(RegiserActivity.this);
+        progressDialog.setTitle("Please Wait...");
+        progressDialog.show();
         mAuth.createUserWithEmailAndPassword(mail, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -99,9 +102,7 @@ public class RegiserActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             if(filepath != null) {
-                                final ProgressDialog progressDialog = new ProgressDialog(RegiserActivity.this);
-                                progressDialog.setTitle("Please Wait...");
-                                progressDialog.show();
+
                                 StorageReference rf = storageReference.child("images/"+mAuth.getCurrentUser().getUid());
                                 rf.putFile(filepath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override
@@ -134,6 +135,7 @@ public class RegiserActivity extends AppCompatActivity {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(RegiserActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
                         }
 
                     }

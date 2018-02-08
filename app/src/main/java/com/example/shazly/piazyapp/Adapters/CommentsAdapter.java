@@ -30,6 +30,10 @@ public class CommentsAdapter extends ArrayAdapter {
         super(c,0,comments);
         context = c;
     }
+    public CommentsAdapter(){
+
+        super(null,0,0);
+    }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Check if the existing view is being reused, otherwise inflate the view
