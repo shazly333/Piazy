@@ -13,12 +13,12 @@ https://drive.google.com/open?id=1spFqBIXi6t2IZ9_mAUZBfCULFLpUVP3i
 
 # User Guide:
 # 1-)  Register:
-when you open the application press button register if you donot have make account yet then the below view will appear.
+when you open the application press button register. If you are a new user, the below view will appear.
 
 <img src="Images/Register.jpeg" width = "200">
 
 # 2-) Add Course:
-After enter to list of courses you will find a small pink button on the right bottom side of the screen (you can also sign out from side upper menu)
+After entering courses list, you will find a small pink button on the right bottom side of the screen, you should press it to add new course (you can also sign out from side upper menu)
 
 <img src="Images/courselistandsignout.jpeg" width = "200"> 
 
@@ -36,7 +36,7 @@ To add students and instructors, there is two edit text field and buttons beside
  <img src="Images/waitaddstudent.jpeg" width = "200"> <img src="Images/addstudent.jpeg" width = "200"> <img src="Images/notfoundstudent.jpeg" width = "200"> <img src="Images/hasbeenadded.jpeg" width = "200"> 
  
  # 3-) Add Post or Resource File:
- To add post you press small pink button on the right bottom side of the screen, you should fill all required data.
+ To add post you press small pink button on the right bottom side of the screen(button in resource files tab to add file and in the post tab to add post) you should fill all required data.
  
  Note: only instructors can add new files to course.
  
