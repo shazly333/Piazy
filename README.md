@@ -17,7 +17,7 @@ when you open the application press button register if you donot have make accou
 
 <img src="Images/Register.jpeg" width = "200">
 
-# 2-) Add Course"
+# 2-) Add Course:
 After enter to list of courses you will find a small pink button on the right bottom side of the screen (you can also sign out from side upper menu)
 
 <img src="Images/courselistandsignout.jpeg" width = "200"> 
