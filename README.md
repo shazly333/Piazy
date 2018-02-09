@@ -33,7 +33,7 @@ To add students and instructors, there is two edit text field and buttons beside
 3-) if you add this email before "This email has been added before".
 
 
- <img src="Images/waitaddstudent.jpeg" width = "200"> <img src="Images/addstudent.jpeg" width = "200"> <img src="Images/notfoundstudent.jpeg" width = "200"> <img src="Images/hasbeenadded.jpeg" width = "200"> 
+ <img src="Images/waitaddstudent.jpeg" width = "200"> <img src="Images/addstudent.jpeg" width = "200"> <img src="Images/notfoundstudent.jpeg" width = "200">  <img src="Images/hasbeenadded.jpeg" width = "200"> 
  
  # 3-) Add Post or Resource File:
  To add post you press small pink button on the right bottom side of the screen(button in resource files tab to add file and in the post tab to add post) you should fill all required data.
