@@ -140,7 +140,10 @@ public class RegiserActivity extends AppCompatActivity {
 
                     }
                 });
-
+//
+//            <img src="Images/addcourseemail.jpeg" width = "200">
+//    <img src="Images/emailcomment.jpeg" width = "200">
+//    <img src="Images/instructoremailcomment.jpeg" width = "200">
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
