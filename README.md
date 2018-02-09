@@ -6,6 +6,11 @@
 
 2-) User Guide
 
+# Installation:
+apk link download:
+
+https://drive.google.com/open?id=1spFqBIXi6t2IZ9_mAUZBfCULFLpUVP3i
+
 # User Guide:
 # 1-)  Register:
 when you open the application press button register if you donot have make account yet then the below view will appear.
@@ -42,15 +47,18 @@ To add students and instructors, there is two edit text field and buttons beside
  
   <img src="Images/studentpost.jpeg" width = "200">
   
-  # 4-) Emails System:
+  # 4-) Emails and Notifications System:
   
   When you create course, all students and instructors will receive emails told them that they have been enrolled in this course. If any post is published or any file is added on this course, all instructors and students will receive emails told them that.
-  If any one commented on a post, post owner,instructors and all students who commented on the same post will get emails too.
+  If any one commented on a post, post owner,instructors and all  students who commented on the same post will get emails too.
   
-    <img src="Images/addfileemail.jpeg" width = "200">  
-    <img src="Images/addcourseemail.jpeg" width = "200"> 
-    <img src="Images/emailcomment.jpeg" width = "200"> 
-    <img src="Images/instructoremailcomment.jpeg" width = "200">
+<img src="Images/addfileemail.jpeg" width = "200">  <img src="Images/addcourseemail.jpeg" width = "200">  <img src="Images/instructoremailcomment.jpeg" width = "200">   <img src="Images/emailcomment.jpeg" width = "200"> 
+
+
+and there is a notification tab to see all notifications:
+
+<img src="Images/Notificationlist.jpeg" width = "200">
+
 
 
 
