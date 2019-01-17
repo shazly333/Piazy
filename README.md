@@ -1,24 +1,46 @@
 # Piazy-App
-# An Android application which will help teachers and students to communicate more easier.
-# Table Of Contents:
+ An Android application which will help teachers and students to communicate more easier.
 
-1-) Installation
+Table of contents
+=================
 
-2-) User Guide
+<!--ts-->
+   * [Technologies Used](#technologies-used)
+   * [Prerequisites](#prerequisites)
+   * [User Guide](#user-guide)
+      * [Registeration](#registeration)
+      * [Adding Courses](#adding-courses)
+      * [Adding Posts or Resource Files](#adding-posts-or-resource-files)
+      * [Emails and Notifications System](#emails-and-notifications-system)
+   * [License](#license)
+<!--te-->
 
-# Installation:
+Technologies Used:
+===========
+1-) FireBase database to save posts and user accounts.
+2-) FireBase storage to save profile images for users.
+3-) Java API Mail to send emails to students and instructors.
+
+Prerequisites:
+=============
+You should have an android system on a mobile and ability to download and install apk files.
 apk link download:
-
 https://drive.google.com/open?id=1spFqBIXi6t2IZ9_mAUZBfCULFLpUVP3i
 
-# User Guide:
-# 1-)  Registeration:
-If you are a new user, the below view will appear.For registeration, press button register. 
+User Guide:
+===========
+
+Registeration:
+--------------------
+  
+  If you are a new user, the below view will appear.For registeration, press button register. 
 
 <img src="Images/Register.jpeg" width = "200">
 
-# 2-) Adding Courses:
-In courses list,press the small pink button on the right bottom side of the screen for adding a new course. you should press it to add new course (you can also sign out from side upper menu)
+Adding Courses:
+--------------------
+  
+  In courses list,press the small pink button on the right bottom side of the screen for adding a new course. you should press    it to add new course (you can also sign out from side upper menu)
 
 <img src="Images/courselistandsignout.jpeg" width = "200"> 
 
@@ -36,8 +58,10 @@ To add students and instructors, there is two edit text field and buttons beside
  <img src="Images/waitaddstudent.jpeg" width = "200"> <img src="Images/addstudent.jpeg" width = "200"> <img src="Images/notfoundstudent.jpeg" width = "200">  <img src="Images/hasbeenadded.jpeg" width = "200"> 
 
  
- # 3-) Adding Posts or Resource Files:
- To add post you should press small pink button on the right bottom side of the screen(button in resource files tab to add file and in the post tab to add post) you should fill all required data.
+Adding Posts or Resource Files:
+--------------------------------
+
+  To add post you should press small pink button on the right bottom side of the screen(button in resource files tab to add file and in the post tab to add post) you should fill all required data.
  
  Note: only instructors can add new files to course.
  
@@ -48,7 +72,8 @@ To add students and instructors, there is two edit text field and buttons beside
  
   <img src="Images/studentpost.jpeg" width = "200">
   
-  # 4-) Emails and Notifications System:
+  Emails and Notifications System:
+  --------------------
   
   When you create course, all students and instructors will receive emails told them that they have been enrolled in this course. If any post is published or any file is added on this course, all instructors and students will receive emails tell them that.
   If anyone commented on a post, post owner,instructors and all  students who commented on the same post will get emails too.
@@ -61,7 +86,11 @@ and there is a notification tab to see all notifications:
 <img src="Images/Notificationlist.jpeg" width = "200">
 
 
+License:
+=======
 
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+Copyright (c) 2018 Mohamed Kamal El-Shazly
 
 
 
