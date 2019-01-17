@@ -16,10 +16,11 @@ Table of contents
 <!--te-->
 
 Technologies Used:
-===========
-1-) FireBase database to save posts and user accounts.
-2-) FireBase storage to save profile images for users.
-3-) Java API Mail to send emails to students and instructors.
+==================
+- FireBase database to save posts and user accounts.
+- FireBase storage to save profile images for users.
+- Java API Mail to send emails to students and instructors.
+- Java 8 and Android Studio. 
 
 Prerequisites:
 =============
