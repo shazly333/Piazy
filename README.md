@@ -69,13 +69,13 @@ Adding Posts or Resource Files:
  
  Note: only instructors can add new files to course.
  
-    <p align="center">
+<p align="center">
      <img src="Images/addpost.jpeg" width = "200"> <img src="Images/addfile.jpeg" width = "200">
     </p> 
 
 after you add your post you will be at post screen which you can add comments like this:
  
-     <p align="center">
+<p align="center">
        <img src="Images/studentpost.jpeg" width = "200">
      </p>  
  
@@ -90,7 +90,7 @@ Emails and Notifications System:
 
 and there is a notification tab to see all notifications:
     
-    <p align="center">
+<p align="center">
        <img src="Images/Notificationlist.jpeg" width = "200">
     </p>
 
