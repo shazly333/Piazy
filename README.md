@@ -84,9 +84,10 @@ Emails and Notifications System:
   
   When you create course, all students and instructors will receive emails told them that they have been enrolled in this course. If any post is published or any file is added on this course, all instructors and students will receive emails tell them that.
   If anyone commented on a post, post owner,instructors and all  students who commented on the same post will get emails too.
-     
-      <img src="Images/addfileemail.jpeg" width = "200">  <img src="Images/addcourseemail.jpeg" width = "200">  <img src="Images/instructoremailcomment.jpeg" width = "200">   <img src="Images/emailcomment.jpeg" width = "200"> 
-     
+     <p align="center">
+
+ <img src="Images/addfileemail.jpeg" width = "200">  <img src="Images/addcourseemail.jpeg" width = "200">  <img src="Images/instructoremailcomment.jpeg" width = "200">   <img src="Images/emailcomment.jpeg" width = "200"> 
+</p>     
 
 and there is a notification tab to see all notifications:
     
