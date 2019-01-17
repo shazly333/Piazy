@@ -38,14 +38,14 @@ Registeration:
 
    <p align="center">
       <img src="Images/Register.jpeg" width = "200">
-    </p>
+   </p>
 
 Adding Courses:
 --------------------
   
   In courses list,press the small pink button on the right bottom side of the screen for adding a new course. you should press    it to add new course (you can also sign out from side upper menu).
   
-    <p align="center">
+<p align="center">
       <img src="Images/courselistandsignout.jpeg" width = "200"> 
     </p>
 
@@ -58,7 +58,7 @@ To add students and instructors, there is two edit text field and buttons beside
 
 3-) if you add this email before "This email has been added before".
 
-    <p align="center">
+<p align="center">
      <img src="Images/waitaddstudent.jpeg" width = "200"> <img src="Images/addstudent.jpeg" width = "200"> <img src="Images/notfoundstudent.jpeg" width = "200">  <img src="Images/hasbeenadded.jpeg" width = "200"> 
     </p>
  
@@ -85,14 +85,13 @@ Emails and Notifications System:
   When you create course, all students and instructors will receive emails told them that they have been enrolled in this course. If any post is published or any file is added on this course, all instructors and students will receive emails tell them that.
   If anyone commented on a post, post owner,instructors and all  students who commented on the same post will get emails too.
      
-     <p align="center">
       <img src="Images/addfileemail.jpeg" width = "200">  <img src="Images/addcourseemail.jpeg" width = "200">  <img src="Images/instructoremailcomment.jpeg" width = "200">   <img src="Images/emailcomment.jpeg" width = "200"> 
-     </p>
+     
 
 and there is a notification tab to see all notifications:
     
     <p align="center">
-     <img src="Images/Notificationlist.jpeg" width = "200">
+       <img src="Images/Notificationlist.jpeg" width = "200">
     </p>
 
 License:
